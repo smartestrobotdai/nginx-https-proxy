@@ -1,0 +1,15 @@
+version: '3'
+services:
+  proxy:
+    image: webapp/proxy
+    build: ./proxy 
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./keys/:/keys/:ro
+  
+  docker-nginx:
+     depends_on:
+       - proxy 
+     image: nginx:alpine 
