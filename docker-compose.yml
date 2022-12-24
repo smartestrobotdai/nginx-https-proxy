@@ -1,6 +1,8 @@
 version: '3'
 services:
   proxy:
+    depends_on:
+      - docker-nginx
     image: webapp/proxy
     build: ./proxy 
     ports:
@@ -10,6 +12,4 @@ services:
       - ./keys/:/keys/:ro
   
   docker-nginx:
-     depends_on:
-       - proxy 
      image: nginx:alpine 
